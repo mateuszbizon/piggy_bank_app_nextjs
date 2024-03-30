@@ -6,7 +6,7 @@ import { SignedIn, SignedOut, SignOutButton } from "@clerk/nextjs";
 
 function Topbar() {
 	return (
-		<nav className='fixed w-full top-0 flex justify-between px-3 py-3 md:px-14 lg:px-32 border-b border-light-2'>
+		<nav className='fixed w-full top-0 flex justify-between px-3 py-3 md:px-14 lg:px-32 border-b border-light-2 bg-light-1 z-50'>
 			<Link href='/' className='flex items-center gap-4'>
 				<Image
 					src='/assets/piggy-bank.png'
