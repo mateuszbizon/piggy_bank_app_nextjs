@@ -9,8 +9,8 @@ import BottomBar from "@/components/shared/BottomBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Piggy bank manager",
-	description: "Controlling the amount of money in the piggy bank",
+	title: "Skarbonka online",
+	description: "Wyświetlanie i zarządzanie zawartością skarbonki",
 };
 
 export default function RootLayout({
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<ClerkProvider>
-			<html lang='en'>
+			<html lang='pl'>
 				<body className={inter.className}>
 					<Topbar />
 					<main className='flex'>

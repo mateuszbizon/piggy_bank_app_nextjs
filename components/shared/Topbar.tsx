@@ -23,7 +23,7 @@ function Topbar() {
 					<ArrowRightEndOnRectangleIcon className='h-6 w-6' />
 				</Link>
 				<Link href="/sign-in" className="main-btn hidden md:block">
-					<span>Sign In</span>
+					<span>Zaloguj się</span>
 				</Link>
 			</SignedOut>
 			<SignedIn>
@@ -35,7 +35,7 @@ function Topbar() {
                 </SignOutButton>
 				<SignOutButton>
 					<Link href="/sign-in" className="main-btn hidden md:block">
-						<span>Sign Out</span>
+						<span>Wyloguj się</span>
 					</Link>
 				</SignOutButton>
 			</SignedIn>

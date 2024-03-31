@@ -8,17 +8,17 @@ import {
 import Link from "next/link";
 
 export const sidebarItems = [
-	{ route: "/", icon: <HomeIcon className='h-6 w-6' />, text: "Home" },
-	{ route: "/create", icon: <PlusIcon className='h-6 w-6' />, text: "Create" },
+	{ route: "/", icon: <HomeIcon className='h-6 w-6' />, text: "Główny" },
+	{ route: "/create", icon: <PlusIcon className='h-6 w-6' />, text: "Utwórz" },
 	{
 		route: "/profile",
 		icon: <UserIcon className='h-6 w-6' />,
-		text: "Profile",
+		text: "Profil",
 	},
 	{
 		route: "/search",
 		icon: <MagnifyingGlassIcon className='h-6 w-6' />,
-		text: "Search",
+		text: "Wyszukaj",
 	},
 ];
 
