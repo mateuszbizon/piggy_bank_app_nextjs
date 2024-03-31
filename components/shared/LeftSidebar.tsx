@@ -7,7 +7,7 @@ import {
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
-const sidebarItems = [
+export const sidebarItems = [
 	{ route: "/", icon: <HomeIcon className='h-6 w-6' />, text: "Home" },
 	{ route: "/create", icon: <PlusIcon className='h-6 w-6' />, text: "Create" },
 	{
