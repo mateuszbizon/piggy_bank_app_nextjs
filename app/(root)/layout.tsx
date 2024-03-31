@@ -9,29 +9,27 @@ import BottomBar from "@/components/shared/BottomBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Piggy bank manager",
-  description: "Controlling the amount of money in the piggy bank",
+	title: "Piggy bank manager",
+	description: "Controlling the amount of money in the piggy bank",
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <Topbar />
-          <main className="flex">
-            <LeftSidebar />
-            <section className="flex flex-1">
-              {children}
-            </section>
-          </main>
-          <BottomBar />
-        </body>
-      </html>
-    </ClerkProvider>
-  );
+	return (
+		<ClerkProvider>
+			<html lang='en'>
+				<body className={inter.className}>
+					<Topbar />
+					<main className='flex'>
+						<LeftSidebar />
+						<section className='flex flex-col pt-24 px-5'>{children}</section>
+					</main>
+					<BottomBar />
+				</body>
+			</html>
+		</ClerkProvider>
+	);
 }
