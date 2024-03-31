@@ -31,7 +31,7 @@ function LeftSidebar() {
 						<Link
 							href={item.route}
 							key={item.route}
-							className='flex items-center gap-3 text-xl hover:text-primary transition'>
+							className='flex items-center gap-3 lg:w-[200px] p-2 rounded-lg text-xl hover:bg-light-2 transition'>
 							{item.icon}
 							<span className='hidden lg:block'>{item.text}</span>
 						</Link>
