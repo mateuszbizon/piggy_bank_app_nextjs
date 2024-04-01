@@ -1,9 +1,11 @@
 import { getUserById } from "@/lib/actions/userActions";
 import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
   const user = await currentUser();
-  if (!user) return null;
+  
+  if (!user) redirect("/welcome");
 
   const fetchedUser = await getUserById(user.id);
   
