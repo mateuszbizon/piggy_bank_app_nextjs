@@ -13,6 +13,7 @@ const config: Config = {
 				"primary-2": "#0baabc",
 				"light-1": "#fff",
 				"light-2": "#e6e6e6",
+				"light-3": "#f2f2f2",
 			},
 		},
 	},

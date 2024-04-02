@@ -9,9 +9,7 @@ export default async function Home() {
 
   const fetchedUser = await getUserById(user.id);
   
-  if (!fetchedUser?.onboarded) {
-    console.log("should redirect")
-  }
+  if (!fetchedUser?.onboarded) redirect("/onboarding")
   
   return (
     <>
