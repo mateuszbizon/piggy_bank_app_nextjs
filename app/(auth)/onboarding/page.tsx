@@ -11,18 +11,24 @@ async function OnBoarding() {
 
 	const fetchedUser = await getUserById(user.id);
 
+	const userData = {
+		id: fetchedUser?.id,
+		name: fetchedUser?.name,
+		username: fetchedUser?.username,
+	}
+
 	if (fetchedUser?.onboarded) redirect("/");
 
 	return (
-		<section className='mx-auto max-w-3xl flex flex-col'>
+		<>
 			<h1 className='text-3xl font-semibold mb-2'>Utwórz profil</h1>
 			<p className='text-lg mb-5'>
 				Stwórz swój profil, aby móc korzystać z aplikacji.
 			</p>
-			<div className='bg-light-3 py-2 px-3 rounded-lg'>
-				<AccountProfileForm />
-			</div>
-		</section>
+			<section className='bg-light-3 py-4 px-3 rounded-lg'>
+				<AccountProfileForm user={userData} btnText="Kontynuuj" />
+			</section>
+		</>
 	);
 }
 

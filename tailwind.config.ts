@@ -14,6 +14,7 @@ const config: Config = {
 				"light-1": "#fff",
 				"light-2": "#e6e6e6",
 				"light-3": "#f2f2f2",
+				"error": "#C81D25",
 			},
 		},
 	},

@@ -3,11 +3,23 @@
 @tailwind utilities;
 
 @layer components {
-    .main-btn {
-        @apply bg-primary py-2 px-4 rounded text-light-1 hover:bg-primary-2 transition;
-    }
+	.main-btn {
+		@apply bg-primary py-2 px-4 rounded text-light-1 hover:bg-primary-2 transition;
+	}
 
-    .main-btn-circle {
-        @apply bg-primary py-2 px-2 rounded-full text-light-1 cursor-pointer md:hidden hover:bg-primary-2 transition;
+	.main-btn-circle {
+		@apply bg-primary py-2 px-2 rounded-full text-light-1 cursor-pointer md:hidden hover:bg-primary-2 transition;
+	}
+
+	.input {
+		@apply py-2 px-4 border outline-none focus:border-primary;
+	}
+
+	.input-error-message {
+		@apply text-sm text-error;
+	}
+
+    .label {
+        @apply text-lg;
     }
 }
