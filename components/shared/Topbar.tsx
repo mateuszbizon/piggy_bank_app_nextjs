@@ -3,6 +3,8 @@ import Link from "next/link";
 import React from "react";
 import { ArrowRightEndOnRectangleIcon, ArrowRightStartOnRectangleIcon } from "@heroicons/react/24/solid";
 import { SignedIn, SignedOut, SignOutButton } from "@clerk/nextjs";
+import Button from "../ui/Button";
+import ButtonCircle from "../ui/ButtonCircle";
 
 function Topbar() {
 	return (
@@ -28,15 +30,16 @@ function Topbar() {
 			</SignedOut>
 			<SignedIn>
                 <SignOutButton>
-                    <div
-                        className='main-btn-circle'>
+                    <ButtonCircle>
                         <ArrowRightStartOnRectangleIcon className='h-6 w-6' />
-                    </div>
+                    </ButtonCircle>
                 </SignOutButton>
 				<SignOutButton>
-					<Link href="/sign-in" className="main-btn hidden md:block">
-						<span>Wyloguj się</span>
-					</Link>
+					<div className="hidden md:block">
+						<Button>
+							Wyloguj się
+						</Button>
+					</div>
 				</SignOutButton>
 			</SignedIn>
 		</nav>
