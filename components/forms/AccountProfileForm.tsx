@@ -5,6 +5,8 @@ import Button from '../ui/Button'
 import { useForm } from 'react-hook-form'
 import { UserSchemaType, userSchema } from '@/lib/validations/userValidation'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { usePathname, useRouter } from 'next/navigation'
+import { updateUser } from '@/lib/actions/userActions'
 
 type Props = {
   user: {
@@ -17,6 +19,8 @@ type Props = {
 }
 
 function AccountProfileForm({ user, btnText }: Props) {
+  const pathName = usePathname();
+  const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm<UserSchemaType>({
     resolver: zodResolver(userSchema),
     defaultValues: {
@@ -25,8 +29,18 @@ function AccountProfileForm({ user, btnText }: Props) {
     }
   })
 
-  function onSubmit(values: UserSchemaType) {
-    console.log(`sent: ${values}`)
+  async function onSubmit(values: UserSchemaType) {
+    const result: ApiResponse = await updateUser({ userId: user.id, name: values.name, username: values.username })
+
+    if (result.success) {
+      if (pathName === "/profile/edit") {
+        router.back()
+      } else {
+        router.push("/")
+      }
+    } else {
+      console.log(result.message)
+    }
   }
   
   return (

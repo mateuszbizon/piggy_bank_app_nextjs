@@ -1,6 +1,7 @@
-type ApiResponse<Data> = {
+type ApiResponse<Data = any> = {
     data?: Data;
     message?: string;
+    success?: boolean;
 }
 
 type UserResponse = User;
