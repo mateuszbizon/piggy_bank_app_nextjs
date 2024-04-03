@@ -7,9 +7,9 @@ export default async function Home() {
   
   if (!user) redirect("/welcome");
 
-  const fetchedUser = await getUserById(user.id);
+  const fetchedUser: ApiResponse<UserResponse> = await getUserById(user.id);
   
-  if (!fetchedUser?.onboarded) redirect("/onboarding")
+  if (!fetchedUser.data?.onboarded) redirect("/onboarding")
   
   return (
     <>

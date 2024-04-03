@@ -7,8 +7,11 @@ export async function getUserById(userId: string) {
     try {
         connectToDb();
 
-        return await User.findOne({ id: userId });
+        const user = await User.findOne({ id: userId });
+
+        return { data: user }
     } catch (error: any) {
-        throw new Error(`Failed to get user: ${error.message}`);
+        console.error(error)
+        return { message: `Nie można pobrać użytkownika: ${error.message}` }
     }
 }

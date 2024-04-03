@@ -9,15 +9,15 @@ async function OnBoarding() {
 
 	if (!user) return null;
 
-	const fetchedUser = await getUserById(user.id);
+	const fetchedUser: ApiResponse<UserResponse> = await getUserById(user.id);
 
 	const userData = {
-		id: fetchedUser?.id,
-		name: fetchedUser?.name,
-		username: fetchedUser?.username,
+		id: user.id,
+		name: "",
+		username: user.username || "",
 	}
 
-	if (fetchedUser?.onboarded) redirect("/");
+	if (fetchedUser.data?.onboarded) redirect("/");
 
 	return (
 		<>

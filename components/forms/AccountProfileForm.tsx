@@ -20,8 +20,8 @@ function AccountProfileForm({ user, btnText }: Props) {
   const { register, handleSubmit, formState: { errors } } = useForm<UserSchemaType>({
     resolver: zodResolver(userSchema),
     defaultValues: {
-      name: user?.name ? user.name : "",
-      username: user?.username ? user.username : "",
+      name: user.name,
+      username: user.username,
     }
   })
 
