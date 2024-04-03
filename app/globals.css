@@ -11,6 +11,14 @@
 		@apply bg-primary py-2 px-2 rounded-full text-light-1 cursor-pointer md:hidden hover:bg-primary-2 transition;
 	}
 
+	.form {
+		@apply flex flex-col gap-6;
+	}
+
+	.form-box {
+		@apply flex flex-col;
+	}
+
 	.input {
 		@apply py-2 px-4 border outline-none focus:border-primary;
 	}
@@ -20,6 +28,6 @@
 	}
 
     .label {
-        @apply text-lg;
+        @apply text-lg mb-2;
     }
 }

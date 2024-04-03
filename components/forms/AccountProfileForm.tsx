@@ -44,14 +44,14 @@ function AccountProfileForm({ user, btnText }: Props) {
   }
   
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6'>
-      <div className='flex flex-col'>
-        <label htmlFor="name" className='label mb-2'>Imię</label>
+    <form onSubmit={handleSubmit(onSubmit)} className='form'>
+      <div className='form-box'>
+        <label htmlFor="name" className='label'>Imię</label>
         <input {...register("name")} id='name' type="text" className='input mb-1' placeholder='Podaj imię' />
         <span className='input-error-message'>{errors.name && errors.name.message}</span>
       </div>
-      <div className='flex flex-col'>
-        <label htmlFor="username" className='label mb-2'>Nazwa użytkownika</label>
+      <div className='form-box'>
+        <label htmlFor="username" className='label'>Nazwa użytkownika</label>
         <input {...register("username")} id='username' type="text" className='input mb-1' placeholder='Podaj nazwę użytkownika' />
         <span className='input-error-message'>{errors.username && errors.username.message}</span>
       </div>
