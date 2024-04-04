@@ -8,7 +8,7 @@ async function Page() {
   const user = await currentUser();
   if (!user) return null;
 
-  const fetchedUser: ApiResponse<UserResponse> = await getUserById(user.id)
+  const fetchedUser: ApiResponse<User> = await getUserById(user.id)
 
   if (!fetchedUser.data?.onboarded) redirect("/onboarding")
 
