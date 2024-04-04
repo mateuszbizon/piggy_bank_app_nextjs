@@ -21,11 +21,11 @@ async function OnBoarding() {
 
 	return (
 		<>
-			<h1 className='text-3xl font-semibold mb-2'>Utwórz profil</h1>
+			<h1 className='title mb-2'>Utwórz profil</h1>
 			<p className='text-lg mb-5'>
 				Stwórz swój profil, aby móc korzystać z aplikacji.
 			</p>
-			<section className='bg-light-3 py-4 px-3 rounded-lg'>
+			<section className='form-section'>
 				<AccountProfileForm user={userData} btnText="Kontynuuj" />
 			</section>
 		</>

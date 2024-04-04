@@ -30,4 +30,12 @@
     .label {
         @apply text-lg mb-2;
     }
+
+	.form-section {
+		@apply bg-light-3 py-4 px-3 rounded-lg;
+	}
+
+	.title {
+		@apply text-3xl font-semibold;
+	}
 }
