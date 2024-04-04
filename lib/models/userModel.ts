@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  piggyBanks: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "PiggyBank"
+    }
+  ]
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
