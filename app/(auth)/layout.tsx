@@ -21,7 +21,7 @@ export default function RootLayout({
       <html lang="pl">
         <body className={inter.className}>
           <Topbar />
-          <main className="pt-24 px-4 mx-auto max-w-3xl flex flex-col">
+          <main className="main-container max-w-3xl">
             {children}
           </main>
           </body>
