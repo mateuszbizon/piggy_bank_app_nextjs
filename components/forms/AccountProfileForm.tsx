@@ -21,7 +21,7 @@ type Props = {
 function AccountProfileForm({ user, btnText }: Props) {
   const pathName = usePathname();
   const router = useRouter();
-  const { register, handleSubmit, formState: { errors } } = useForm<UserSchemaType>({
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<UserSchemaType>({
     resolver: zodResolver(userSchema),
     defaultValues: {
       name: user.name,
@@ -56,7 +56,7 @@ function AccountProfileForm({ user, btnText }: Props) {
         <span className='input-error-message'>{errors.username && errors.username.message}</span>
       </div>
       <div className='flex justify-end'>
-        <Button>
+        <Button disabled={isSubmitting}>
           {btnText}
         </Button>
       </div>

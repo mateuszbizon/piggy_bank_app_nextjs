@@ -4,7 +4,7 @@
 
 @layer components {
 	.main-btn {
-		@apply bg-primary py-2 px-4 rounded text-light-1 hover:bg-primary-2 transition;
+		@apply bg-primary py-2 px-4 rounded text-light-1 hover:bg-primary-2 transition disabled:bg-primary-disabled disabled:cursor-not-allowed;
 	}
 
 	.main-btn-circle {
@@ -12,7 +12,7 @@
 	}
 
 	.main-container {
-		@apply pt-24 px-4 mx-auto flex flex-col
+		@apply pt-24 px-4 mx-auto flex flex-col;
 	}
 
 	.form {
@@ -31,9 +31,9 @@
 		@apply text-sm text-error;
 	}
 
-    .label {
-        @apply text-lg mb-2;
-    }
+	.label {
+		@apply text-lg mb-2;
+	}
 
 	.form-section {
 		@apply bg-light-3 py-4 px-3 rounded-lg;

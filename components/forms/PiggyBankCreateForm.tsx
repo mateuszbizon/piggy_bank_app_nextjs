@@ -14,7 +14,7 @@ type Props = {
 
 function PiggyBankCreateForm({ userId }: Props) {
   const router = useRouter();
-  const { register, handleSubmit, formState: { errors } } = useForm<PiggyBankSchema>({
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<PiggyBankSchema>({
     resolver: zodResolver(piggyBankSchema),
     defaultValues: {
         name: "",
@@ -42,7 +42,7 @@ function PiggyBankCreateForm({ userId }: Props) {
             <span className='input-error-message'>{errors.name && errors.name.message}</span>
         </div>
         <div className='flex justify-end'>
-            <Button>
+            <Button disabled={isSubmitting}>
                 Utwórz
             </Button>
         </div>
