@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import PiggyBank from "../models/piggyBankModel";
 import User from "../models/userModel";
 import { connectToDb } from "../mongoose";
@@ -21,6 +22,8 @@ export async function createPiggyBank({ userId, name }: CreatePiggyBankProps) {
         await User.findByIdAndUpdate(userId, {
             $push: { piggyBanks: createdPiggyBank._id }
         })
+
+        revalidatePath("/")
 
         return { message: "Utworzono skarbonkę", success: true }
 	} catch (error) {

@@ -1,5 +1,6 @@
 "use server";
 
+import PiggyBank from "../models/piggyBankModel";
 import User from "../models/userModel";
 import { connectToDb } from "../mongoose";
 
@@ -45,5 +46,25 @@ export async function updateUser({ userId, name, username }: UpdateUserProps) {
 	} catch (error: any) {
 		console.error(error);
 		return { message: error.message, success: false };
+	}
+}
+
+export async function getUserPiggyBanks(userId: string) {
+	try {
+		connectToDb();
+
+		const piggyBanks = await User.findOne({ id: userId }).populate({
+			path: "piggyBanks",
+			model: PiggyBank
+		})
+
+		if (!piggyBanks) {
+			return { message: "Nie znaleziono użytkownika", success: false }
+		}
+
+		return { data: piggyBanks, success: true }
+	} catch (error) {
+		console.error(error);
+		return { message: "Nie można pobrać skarbonek", success: false }
 	}
 }

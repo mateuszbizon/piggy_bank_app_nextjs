@@ -18,7 +18,7 @@ type PiggyBank = {
     name: string;
     authorId: string;
     createdAt: Date;
-    amountMoney: Number;
+    amountMoney: number;
     payments: Payment[];
     people: PiggyBankPerson[];
 }
@@ -36,6 +36,6 @@ type Payment = {
     piggyBankPersonId: string;
     piggyBankPersonName: string;
     isPaymentAdded: boolean;
-    paymentValue: Number;
+    paymentValue: number;
     createdAt: Date;
 }
