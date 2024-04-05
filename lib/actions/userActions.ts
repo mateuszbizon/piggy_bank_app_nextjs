@@ -10,10 +10,14 @@ export async function getUserById(userId: string) {
 
 		const user = await User.findOne({ id: userId });
 
+		if (!user) {
+			return { message: "Nie znaleziono użytkownika", success: false }
+		}
+
 		return { data: user, success: true };
-	} catch (error: any) {
+	} catch (error) {
 		console.error(error);
-		return { message: error.message, success: false };
+		return { message: "Nie można wyszukać użytkownika", success: false };
 	}
 }
 
@@ -43,9 +47,9 @@ export async function updateUser({ userId, name, username }: UpdateUserProps) {
 
         return { message: "Dodano/zaktualizowano użytkownika", success: true }
 
-	} catch (error: any) {
+	} catch (error) {
 		console.error(error);
-		return { message: error.message, success: false };
+		return { message: "Nie można dodać/zaktualizować użytkownika", success: false };
 	}
 }
 
