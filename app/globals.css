@@ -12,7 +12,7 @@
 	}
 
 	.main-container {
-		@apply pt-24 px-4 mx-auto flex flex-col;
+		@apply pt-24 pb-16 px-4 mx-auto flex flex-col;
 	}
 
 	.form {
