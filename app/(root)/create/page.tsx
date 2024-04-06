@@ -13,7 +13,7 @@ async function Page() {
 	if (!fetchedUser.data?.onboarded) redirect("/onboarding");
 
 	return (
-		<div className='mx-auto w-full md:w-[80%]'>
+		<div className='inner-container'>
 			<h1 className='title mb-5'>Utwórz skarbonkę</h1>
 			<section className='form-section'>
 				<PiggyBankCreateForm userId={fetchedUser.data._id} />
