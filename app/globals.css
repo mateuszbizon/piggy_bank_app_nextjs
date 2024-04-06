@@ -11,6 +11,10 @@
 		@apply bg-primary py-2 px-2 rounded-full text-light-1 cursor-pointer md:hidden hover:bg-primary-2 transition;
 	}
 
+	.secondary-btn {
+		@apply bg-transparent py-2 px-4 rounded text-black hover:bg-secondary-1 transition;
+	}
+
 	.main-container {
 		@apply pt-24 pb-16 px-4 mx-auto flex flex-col;
 	}
