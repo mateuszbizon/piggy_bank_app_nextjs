@@ -40,10 +40,10 @@
 	}
 
 	.title {
-		@apply text-3xl font-semibold;
+		@apply text-3xl sm:text-4xl font-semibold;
 	}
 
 	.no-result {
-		@apply text-xl;
+		@apply text-xl text-center font-medium;
 	}
 }

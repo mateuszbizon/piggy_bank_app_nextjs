@@ -17,10 +17,10 @@ export default async function Home() {
   
   return (
     <>
-      <h1 className="font-semibold text-4xl mb-5">Witaj {fetchedUser.data.name}</h1>
+      <h1 className="title mb-5">Witaj {fetchedUser.data.name}</h1>
       <p className="mb-4 text-xl">Twoje skarbonki:</p>
       {result.data?.piggyBanks.length == 0 ? (
-        <div>
+        <div className="flex flex-col items-center">
           <p className="mb-6 no-result">Nie masz jeszcze żadnych skarbonek</p>
           <Link href="/create" className="main-btn">
             Dodaj skarbonkę
