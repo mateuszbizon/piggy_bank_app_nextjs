@@ -9,6 +9,10 @@ const piggyBankPersonSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
+  amountMoney: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const PiggyBankPerson = mongoose.models.PiggyBankPerson || mongoose.model("PiggyBankPerson", piggyBankPersonSchema);

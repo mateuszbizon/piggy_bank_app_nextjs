@@ -33,6 +33,7 @@ type PiggyBankPerson = {
     _id: string;
     name: string;
     piggyBankId: string;
+    amountMoney: number;
 }
 
 type Payment = {
