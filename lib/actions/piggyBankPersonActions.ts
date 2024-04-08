@@ -1,6 +1,5 @@
 "use server"
 
-import PiggyBank from "../models/piggyBankModel";
 import PiggyBankPerson from "../models/piggyBankPersonModel";
 import { connectToDb } from "../mongoose";
 
@@ -13,13 +12,9 @@ export async function createPerson({ piggyBankId, personName }: CreatePersonProp
     try {
         connectToDb();
 
-        const createdPerson = await PiggyBankPerson.create({
+        await PiggyBankPerson.create({
             name: personName,
             piggyBankId,
-        })
-
-        await PiggyBank.findByIdAndUpdate(piggyBankId, {
-            $push: { people: createdPerson._id }
         })
 
         return { message: "Dodano osobę", success: true }

@@ -7,7 +7,6 @@ const piggyBankSchema = new mongoose.Schema({
   },
   authorId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
     required: true,
   },
   createdAt: {
@@ -18,18 +17,6 @@ const piggyBankSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  payments: [
-    {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Payment"
-    },
-  ],
-  people: [
-    {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "PiggyBankPerson"
-    },
-  ],
 });
 
 const PiggyBank = mongoose.models.PiggyBank || mongoose.model("PiggyBank", piggyBankSchema);

@@ -16,13 +16,9 @@ export async function createPiggyBank({ userId, name }: CreatePiggyBankProps) {
 	try {
 		connectToDb();
 
-		const createdPiggyBank = await PiggyBank.create({
+		await PiggyBank.create({
             name,
             authorId: userId,
-        })
-
-        await User.findByIdAndUpdate(userId, {
-            $push: { piggyBanks: createdPiggyBank._id }
         })
 
         revalidatePath("/")
@@ -38,19 +34,15 @@ export async function getPiggyBankById(piggyBankId: string) {
     try {
         connectToDb();
 
-        const piggyBank = await PiggyBank.findById(piggyBankId).populate({
-            path: "people",
-            model: PiggyBankPerson
-        }).populate({
-            path: "payments",
-            model: Payment
-        })
+        const piggyBank = await PiggyBank.findById(piggyBankId)
 
         if (!piggyBank) {
             return { message: "Nie znaleziono tej skarbonki", success: false }
         }
 
-        return { data: piggyBank, success: true }
+        const people = await PiggyBankPerson.find({ piggyBankId: piggyBankId })
+
+        return { data: { piggyBank: piggyBank, people: people }, success: true }
 
     } catch (error) {
         console.error(error)

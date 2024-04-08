@@ -57,10 +57,7 @@ export async function getUserPiggyBanks(userId: string) {
 	try {
 		connectToDb();
 
-		const piggyBanks = await User.findOne({ id: userId }).populate({
-			path: "piggyBanks",
-			model: PiggyBank
-		})
+		const piggyBanks = await PiggyBank.find({ authorId: userId })
 
 		if (!piggyBanks) {
 			return { message: "Nie znaleziono użytkownika", success: false }

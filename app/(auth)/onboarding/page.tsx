@@ -9,7 +9,7 @@ async function OnBoarding() {
 
 	if (!user) return null;
 
-	const fetchedUser: ApiResponse<User> = await getUserById(user.id);
+	const fetchedUser: ApiResponse<UserResponse> = await getUserById(user.id);
 
 	const userData = {
 		id: user.id,

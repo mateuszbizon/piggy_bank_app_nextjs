@@ -7,15 +7,8 @@ const piggyBankPersonSchema = new mongoose.Schema({
   },
   piggyBankId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "PiggyBank",
     required: true,
   },
-  payments: [
-    {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Payment"
-    }
-  ],
 });
 
 const PiggyBankPerson = mongoose.models.PiggyBankPerson || mongoose.model("PiggyBankPerson", piggyBankPersonSchema);

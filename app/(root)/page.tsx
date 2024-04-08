@@ -9,17 +9,17 @@ export default async function Home() {
   
   if (!user) redirect("/welcome");
 
-  const fetchedUser: ApiResponse<User> = await getUserById(user.id);
+  const fetchedUser: ApiResponse<UserResponse> = await getUserById(user.id);
   
   if (!fetchedUser.data?.onboarded) redirect("/onboarding")
 
-  const result: ApiResponse<User> = await getUserPiggyBanks(user.id)
+  const result: ApiResponse<PiggyBanksResponse> = await getUserPiggyBanks(fetchedUser.data._id)
   
   return (
     <>
       <h1 className="title mb-5">Witaj {fetchedUser.data.name}</h1>
       <p className="mb-4 text-xl">Twoje skarbonki:</p>
-      {result.data?.piggyBanks.length == 0 ? (
+      {result.data?.length == 0 ? (
         <div className="flex flex-col items-center">
           <p className="mb-6 no-result">Nie masz jeszcze żadnych skarbonek</p>
           <Link href="/create" className="main-btn">
@@ -28,7 +28,7 @@ export default async function Home() {
         </div>
       ) : (
       <div className="grid-container">
-        {result.data?.piggyBanks.map(piggyBank => {
+        {result.data?.map(piggyBank => {
           return (
             <PiggyBankCard key={piggyBank._id} piggyBank={piggyBank} />
           )

@@ -31,7 +31,7 @@ function PiggyBankMain({ piggyBank, currentUserId }: Props) {
             })}
         </div>
         {view === PIGGY_BANK_PEOPLE && <PiggyBankPeople />}
-        {view === PIGGY_BANK_ADD_PERSON && <PiggyBankAddPerson userId={currentUserId} piggyBankId={piggyBank?._id} />}
+        {view === PIGGY_BANK_ADD_PERSON && <PiggyBankAddPerson userId={currentUserId} piggyBank={piggyBank} />}
         {view === PIGGY_BANK_PAYMENTS && <PiggyBankPayments />}
         {view === PIGGY_BANK_EDIT && <PiggyBankEdit />}
     </div>

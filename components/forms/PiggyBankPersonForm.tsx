@@ -6,11 +6,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { createPerson } from '@/lib/actions/piggyBankPersonActions';
 
 type Props = {
-  userId: string;
   piggyBankId?: string;
 }
 
-function PiggyBankPersonForm({ userId, piggyBankId }: Props) {
+function PiggyBankPersonForm({ piggyBankId }: Props) {
   const { register, handleSubmit, formState: { errors, isSubmitting }  }  = useForm<PiggyBankPersonSchema>({
     resolver: zodResolver(piggyBankPersonSchema),
     defaultValues: {
@@ -23,6 +22,12 @@ function PiggyBankPersonForm({ userId, piggyBankId }: Props) {
       piggyBankId: piggyBankId,
       personName: values.name,
     })
+
+    if (!result.success) {
+      console.log(result.message)
+    } else {
+      console.log(result.message)
+    }
   }
 
   return (

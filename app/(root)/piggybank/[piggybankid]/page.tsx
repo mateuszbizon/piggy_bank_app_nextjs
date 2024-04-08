@@ -11,24 +11,25 @@ async function PiggyBankPage({ params }: { params: { piggybankid: string } }) {
     const user = await currentUser();
     if (!user) return null;
 
-    const fetchedUser: ApiResponse<User> = await getUserById(user.id);
+    const fetchedUser: ApiResponse<UserResponse> = await getUserById(user.id);
 
     if (!fetchedUser.data?.onboarded) redirect("/onboarding");
 
     const fetchedUserId = fetchedUser.data?._id;
 
-    const result: ApiResponse<PiggyBank> = await getPiggyBankById(params.piggybankid);
+    const result: ApiResponse<PiggyBankResponse> = await getPiggyBankById(params.piggybankid);
 
     if (!result.success) return null;
 
     const piggyBankData = result.data;
+    console.log(piggyBankData)
 
   return (
     <>
-      <h1 className='title mb-6'>{piggyBankData?.name}</h1>
+      <h1 className='title mb-6'>{piggyBankData?.piggyBank.name}</h1>
       <p className='font-semibold text-2xl mb-3'>Suma pieniędzy:</p>
-      <p className='font-semibold text-3xl'>{piggyBankData?.amountMoney} zł</p>
-      <PiggyBankMain piggyBank={piggyBankData} currentUserId={fetchedUserId} />
+      <p className='font-semibold text-3xl'>{piggyBankData?.piggyBank.amountMoney} zł</p>
+      <PiggyBankMain piggyBank={piggyBankData?.piggyBank} currentUserId={fetchedUserId} />
     </>
   )
 }
