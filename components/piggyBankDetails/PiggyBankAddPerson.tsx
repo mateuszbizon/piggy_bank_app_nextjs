@@ -11,7 +11,7 @@ type Props = {
 function PiggyBankAddPerson({ userId, piggyBankId }: Props) {
   return (
     <div className='inner-container'>
-      <h2 className='title mb-5'>Dodaj osobę</h2>
+      <h2 className='title-2 mb-5'>Dodaj osobę</h2>
       <section className='form-section'>
         <PiggyBankPersonForm userId={userId} piggyBankId={piggyBankId} />
       </section>

@@ -55,6 +55,10 @@
 		@apply text-3xl sm:text-4xl font-semibold;
 	}
 
+	.title-2 {
+		@apply text-2xl sm:text-3xl font-semibold;
+	}
+
 	.no-result {
 		@apply text-xl text-center font-medium;
 	}
