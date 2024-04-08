@@ -24,7 +24,7 @@ function PiggyBankMain({ piggyBank, currentUserId }: Props) {
             <button className='secondary-btn' onClick={() => setView(PIGGY_BANK_EDIT)}>Edytuj</button>
         </div>
         {view === PIGGY_BANK_PEOPLE && <PiggyBankPeople />}
-        {view === PIGGY_BANK_ADD_PERSON && <PiggyBankAddPerson />}
+        {view === PIGGY_BANK_ADD_PERSON && <PiggyBankAddPerson userId={currentUserId} piggyBankId={piggyBank?._id} />}
         {view === PIGGY_BANK_PAYMENTS && <PiggyBankPayments />}
         {view === PIGGY_BANK_EDIT && <PiggyBankEdit />}
     </div>

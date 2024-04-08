@@ -1,10 +1,21 @@
 "use client"
 
 import React from 'react'
+import PiggyBankPersonForm from '../forms/PiggyBankPersonForm';
 
-function PiggyBankAddPerson() {
+type Props = {
+  userId: string;
+  piggyBankId?: string;
+}
+
+function PiggyBankAddPerson({ userId, piggyBankId }: Props) {
   return (
-    <div>PiggyBankAddPerson</div>
+    <div className='inner-container'>
+      <h2 className='title mb-5'>Dodaj osobę</h2>
+      <section className='form-section'>
+        <PiggyBankPersonForm userId={userId} piggyBankId={piggyBankId} />
+      </section>
+    </div>
   )
 }
 
