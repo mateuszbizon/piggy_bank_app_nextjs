@@ -3,6 +3,7 @@ import Button from '../ui/Button'
 import { useForm } from 'react-hook-form';
 import { PiggyBankPersonSchema, piggyBankPersonSchema } from '@/lib/validations/piggyBankPersonValidation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { createPerson } from '@/lib/actions/piggyBankPersonActions';
 
 type Props = {
   userId: string;
@@ -18,7 +19,10 @@ function PiggyBankPersonForm({ userId, piggyBankId }: Props) {
   })
 
   async function onSubmit(values: PiggyBankPersonSchema) {
-    console.log("sent")
+    const result: ApiResponse = await createPerson({
+      piggyBankId: piggyBankId,
+      personName: values.name,
+    })
   }
 
   return (
