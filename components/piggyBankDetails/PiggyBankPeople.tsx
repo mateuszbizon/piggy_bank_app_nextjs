@@ -1,10 +1,21 @@
 "use client"
 
 import React from 'react'
+import PiggyBankPersonCard from '../cards/PiggyBankPersonCard';
 
-function PiggyBankPeople() {
+type Props = {
+  people?: PiggyBankPerson[];
+}
+
+function PiggyBankPeople({ people }: Props) {
   return (
-    <div>PiggyBankPeople</div>
+    <div className='grid-container'>
+      {people?.map(person => {
+        return (
+          <PiggyBankPersonCard key={person._id} person={person} />
+        )
+      })}
+    </div>
   )
 }
 
