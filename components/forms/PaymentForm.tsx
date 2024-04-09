@@ -5,9 +5,16 @@ import Button from '../ui/Button';
 import { useForm } from 'react-hook-form';
 import { PaymentSchema, paymentSchema } from '@/lib/validations/paymentValidation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { createPayment } from '@/lib/actions/paymentActions';
+import { usePathname } from 'next/navigation';
 
-function PaymentForm() {
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<PaymentSchema>({
+type Props = {
+    person: PiggyBankPerson;
+}
+
+function PaymentForm({ person }: Props) {
+    const pathName = usePathname();
+    const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<PaymentSchema>({
         resolver: zodResolver(paymentSchema),
         defaultValues: {
             payment: 0,
@@ -15,7 +22,20 @@ function PaymentForm() {
     })
 
     async function onSubmit(values: PaymentSchema) {
-        console.log('sent')
+        const result: ApiResponse = await createPayment({
+            piggyBankId: person.piggyBankId,
+            piggyBankPersonId: person._id,
+            piggyBankPersonName: person.name,
+            paymentValue: values.payment,
+            path: pathName,
+        })
+
+        if (!result.success) {
+            console.log(result.message)
+        } else {
+            console.log(result.message)
+            reset();
+        }
     }
 
   return (

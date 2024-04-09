@@ -3,12 +3,10 @@ import mongoose from "mongoose";
 const paymentSchema = new mongoose.Schema({
   piggyBankId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "PiggyBank",
     required: true,
   },
   piggyBankPersonId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "PiggyBankPerson",
     required: true,
   },
   piggyBankPersonName: {
@@ -17,7 +15,7 @@ const paymentSchema = new mongoose.Schema({
   },
   isPaymentAdded: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   paymentValue: {
     type: Number,
