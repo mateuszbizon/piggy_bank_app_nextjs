@@ -11,6 +11,7 @@ type PiggyBanksResponse = PiggyBank[]
 type PiggyBankResponse = {
     piggyBank: PiggyBank;
     people: PiggyBankPerson[];
+    payments: Payment[];
 };
 
 type User = {

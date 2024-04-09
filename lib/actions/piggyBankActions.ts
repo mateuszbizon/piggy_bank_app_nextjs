@@ -42,7 +42,9 @@ export async function getPiggyBankById(piggyBankId: string) {
 
         const people = await PiggyBankPerson.find({ piggyBankId: piggyBankId })
 
-        return { data: { piggyBank: piggyBank, people: people }, success: true }
+        const payments = await Payment.find({ piggyBankId: piggyBankId })
+
+        return { data: { piggyBank: piggyBank, people: people, payments: payments }, success: true }
 
     } catch (error) {
         console.error(error)
