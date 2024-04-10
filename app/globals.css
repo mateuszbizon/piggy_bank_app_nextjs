@@ -60,6 +60,6 @@
 	}
 
 	.no-result {
-		@apply text-xl text-center font-medium;
+		@apply text-xl text-center font-medium mb-6;
 	}
 }

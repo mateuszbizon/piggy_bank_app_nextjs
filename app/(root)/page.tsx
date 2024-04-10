@@ -1,4 +1,5 @@
 import PiggyBankCard from "@/components/cards/PiggyBankCard";
+import NoResultMessage from "@/components/messages/NoResultMessage";
 import { getUserById, getUserPiggyBanks } from "@/lib/actions/userActions";
 import { currentUser } from "@clerk/nextjs";
 import Link from "next/link";
@@ -20,12 +21,11 @@ export default async function Home() {
       <h1 className="title mb-5">Witaj {fetchedUser.data.name}</h1>
       <p className="mb-4 text-xl">Twoje skarbonki:</p>
       {result.data?.length == 0 ? (
-        <div className="flex flex-col items-center">
-          <p className="mb-6 no-result">Nie masz jeszcze żadnych skarbonek</p>
+        <NoResultMessage message="Nie masz jeszcze żadnych skarbonek">
           <Link href="/create" className="main-btn">
             Dodaj skarbonkę
           </Link>
-        </div>
+        </NoResultMessage>
       ) : (
       <div className="grid-container">
         {result.data?.map(piggyBank => {

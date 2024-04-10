@@ -2,6 +2,7 @@
 
 import React from 'react'
 import PiggyBankPersonCard from '../cards/PiggyBankPersonCard';
+import NoResultMessage from '../messages/NoResultMessage';
 
 type Props = {
   people?: PiggyBankPerson[];
@@ -9,13 +10,19 @@ type Props = {
 
 function PiggyBankPeople({ people }: Props) {
   return (
-    <div className='grid-container'>
-      {people?.map(person => {
-        return (
-          <PiggyBankPersonCard key={person._id} person={person} />
-        )
-      })}
-    </div>
+    <>
+      {people?.length == 0 ? (
+        <NoResultMessage message='Nie ma jeszcze żadnych osób w tej skarbonce' />
+      ) : (
+        <div className='grid-container'>
+          {people?.map(person => {
+            return (
+              <PiggyBankPersonCard key={person._id} person={person} />
+            )
+          })}
+        </div>
+      )}
+    </>
   )
 }
 
