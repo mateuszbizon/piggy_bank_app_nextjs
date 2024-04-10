@@ -21,7 +21,7 @@ function Topbar() {
 			<SignedOut>
 				<Link
 					href='/sign-in'
-					className='main-btn-circle'>
+					className='main-btn-circle md:hidden'>
 					<ArrowRightEndOnRectangleIcon className='h-6 w-6' />
 				</Link>
 				<Link href="/sign-in" className="main-btn hidden md:block">
@@ -30,9 +30,11 @@ function Topbar() {
 			</SignedOut>
 			<SignedIn>
                 <SignOutButton>
-                    <ButtonCircle>
-                        <ArrowRightStartOnRectangleIcon className='h-6 w-6' />
-                    </ButtonCircle>
+                    <div className="md:hidden">
+						<ButtonCircle>
+							<ArrowRightStartOnRectangleIcon className='h-6 w-6' />
+						</ButtonCircle>
+					</div>
                 </SignOutButton>
 				<SignOutButton>
 					<div className="hidden md:block">
