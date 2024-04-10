@@ -28,7 +28,7 @@ async function PiggyBankPage({ params }: { params: { piggybankid: string } }) {
     <>
       <h1 className='title mb-6'>{piggyBankData?.piggyBank.name}</h1>
       <p className='font-semibold text-2xl mb-3'>Suma pieniędzy:</p>
-      <p className='font-semibold text-3xl'>{piggyBankData?.piggyBank.amountMoney} zł</p>
+      <p className='font-semibold text-3xl'>{piggyBankData?.piggyBank.amountMoney.toFixed(2)} zł</p>
       <PiggyBankMain piggyBankData={piggyBankData} currentUserId={fetchedUserId} />
     </>
   )
