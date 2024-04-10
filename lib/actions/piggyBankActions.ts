@@ -16,8 +16,14 @@ export async function createPiggyBank({ userId, name }: CreatePiggyBankProps) {
 	try {
 		connectToDb();
 
+        const existingPiggyBank = await PiggyBank.findOne({ authorId: userId, name: name.toLowerCase() })
+
+        if (existingPiggyBank) {
+            return { message: "Skarbonka już istnieje", success: false }
+        }
+
 		await PiggyBank.create({
-            name,
+            name: name.toLowerCase(),
             authorId: userId,
         })
 

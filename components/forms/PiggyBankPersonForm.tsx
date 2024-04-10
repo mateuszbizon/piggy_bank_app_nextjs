@@ -4,13 +4,15 @@ import { useForm } from 'react-hook-form';
 import { PiggyBankPersonSchema, piggyBankPersonSchema } from '@/lib/validations/piggyBankPersonValidation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createPerson } from '@/lib/actions/piggyBankPersonActions';
+import { usePathname } from 'next/navigation';
 
 type Props = {
   piggyBankId?: string;
 }
 
 function PiggyBankPersonForm({ piggyBankId }: Props) {
-  const { register, handleSubmit, formState: { errors, isSubmitting }  }  = useForm<PiggyBankPersonSchema>({
+  const pathName = usePathname();
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset }  = useForm<PiggyBankPersonSchema>({
     resolver: zodResolver(piggyBankPersonSchema),
     defaultValues: {
       name: "",
@@ -21,12 +23,14 @@ function PiggyBankPersonForm({ piggyBankId }: Props) {
     const result: ApiResponse = await createPerson({
       piggyBankId: piggyBankId,
       personName: values.name,
+      path: pathName,
     })
 
     if (!result.success) {
       console.log(result.message)
     } else {
       console.log(result.message)
+      reset();
     }
   }
 
