@@ -1,7 +1,7 @@
 "use client"
 
 import { formatDate } from '@/lib/utils/dateUtils';
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../ui/Button';
 import { usePathname } from 'next/navigation';
 import { redoPayment, undoPayment } from '@/lib/actions/paymentActions';
@@ -12,31 +12,40 @@ type Props = {
 
 function PaymentCard({ payment }: Props) {
     const pathName = usePathname();
+    const [isLoading, setIsLoading] = useState(false);
 
     async function handleUndoPayment() {
+        setIsLoading(true);
+
         const result: ApiResponse = await undoPayment({
             paymentId: payment._id,
             piggyBankId: payment.piggyBankId,
             piggyBankPersonId: payment.piggyBankPersonId,
             path: pathName,
         })
-
+        
         if (!result.success) {
             console.log(result.message)
         }
+
+        setIsLoading(false);
     }
 
     async function handleRedoPayment() {
+        setIsLoading(true);
+
         const result: ApiResponse = await redoPayment({
             paymentId: payment._id,
             piggyBankId: payment.piggyBankId,
             piggyBankPersonId: payment.piggyBankPersonId,
             path: pathName,
         })
-
+        
         if (!result.success) {
             console.log(result.message)
         }
+
+        setIsLoading(false);
     }
 
   return (
@@ -47,8 +56,8 @@ function PaymentCard({ payment }: Props) {
         </div>
         <div className='flex gap-4 items-center'>
             <span className='text-xl'>{formatDate(payment.createdAt)}</span>
-            <Button onClick={payment.isPaymentAdded ? handleUndoPayment : handleRedoPayment}>
-            {payment.isPaymentAdded ? "Cofnij" : "Przywróć"}
+            <Button onClick={payment.isPaymentAdded ? handleUndoPayment : handleRedoPayment} disabled={isLoading}>
+                {payment.isPaymentAdded ? "Cofnij" : "Przywróć"}
             </Button>
         </div>
     </div>
