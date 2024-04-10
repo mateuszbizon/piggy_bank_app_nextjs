@@ -44,7 +44,7 @@ export async function getPiggyBankById(piggyBankId: string) {
 
         const payments = await Payment.find({ piggyBankId: piggyBankId })
 
-        return { data: { piggyBank: piggyBank, people: people, payments: payments }, success: true }
+        return { data: { piggyBank: piggyBank, people: people, payments: payments.reverse() }, success: true }
 
     } catch (error) {
         console.error(error)

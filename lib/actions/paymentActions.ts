@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import Payment from "../models/paymentModel";
 import PiggyBank from "../models/piggyBankModel";
 import { connectToDb } from "../mongoose";
+import PiggyBankPerson from "../models/piggyBankPersonModel";
 
 type CreatePaymentProps = {
     piggyBankId: string;
@@ -25,6 +26,10 @@ export async function createPayment({ piggyBankId, piggyBankPersonId, piggyBankP
         })
 
         await PiggyBank.findByIdAndUpdate(piggyBankId, {
+            $inc: { amountMoney: paymentValue }
+        }, { new: true })
+
+        await PiggyBankPerson.findOneAndUpdate({ piggyBankId: piggyBankId, name: piggyBankPersonName }, {
             $inc: { amountMoney: paymentValue }
         }, { new: true })
 
