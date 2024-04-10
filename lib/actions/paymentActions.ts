@@ -41,3 +41,60 @@ export async function createPayment({ piggyBankId, piggyBankPersonId, piggyBankP
         return { message: "Nie można dodać kwoty", success: false }
     }
 }
+
+type UndoPaymentProps = {
+    paymentId: string;
+    piggyBankId: string;
+    piggyBankPersonId: string;
+    path: string;
+}
+
+export async function undoPayment({ paymentId, piggyBankId, piggyBankPersonId, path }: UndoPaymentProps) {
+    try {
+        connectToDb();
+
+        const updatedPayment = await Payment.findByIdAndUpdate(paymentId, {
+            isPaymentAdded: false,  
+        }, { new: true })
+
+        await PiggyBank.findByIdAndUpdate(piggyBankId, {
+            $inc: { amountMoney: -updatedPayment.paymentValue }
+        }, { new: true })
+
+        await PiggyBankPerson.findByIdAndUpdate(piggyBankPersonId, {
+            $inc: { amountMoney: -updatedPayment.paymentValue }
+        }, { new: true })
+
+        revalidatePath(path)
+
+        return { message: "Cofnięto kwotę", success: true }
+    } catch (error) {
+        console.error(error);
+        return { message: "Nie można cofnąć kwoty", success: false }
+    }
+}
+
+export async function redoPayment({ paymentId, piggyBankId, piggyBankPersonId, path }: UndoPaymentProps) {
+    try {
+        connectToDb();
+
+        const updatedPayment = await Payment.findByIdAndUpdate(paymentId, {
+            isPaymentAdded: true,  
+        }, { new: true })
+
+        await PiggyBank.findByIdAndUpdate(piggyBankId, {
+            $inc: { amountMoney: updatedPayment.paymentValue }
+        }, { new: true })
+
+        await PiggyBankPerson.findByIdAndUpdate(piggyBankPersonId, {
+            $inc: { amountMoney: updatedPayment.paymentValue }
+        }, { new: true })
+
+        revalidatePath(path)
+
+        return { message: "Przywrócono kwotę", success: true }
+    } catch (error) {
+        console.error(error);
+        return { message: "Nie można przywrócić kwoty", success: false }
+    }
+}
