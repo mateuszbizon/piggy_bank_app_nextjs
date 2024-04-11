@@ -5,6 +5,7 @@ import { PiggyBankPersonSchema, piggyBankPersonSchema } from '@/lib/validations/
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createPerson } from '@/lib/actions/piggyBankPersonActions';
 import { usePathname } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 type Props = {
   piggyBankId?: string;
@@ -27,9 +28,9 @@ function PiggyBankPersonForm({ piggyBankId }: Props) {
     })
 
     if (!result.success) {
-      console.log(result.message)
+      toast.error(result.message)
     } else {
-      console.log(result.message)
+      toast.success(result.message)
       reset();
     }
   }

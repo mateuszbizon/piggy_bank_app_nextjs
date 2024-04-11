@@ -7,6 +7,7 @@ import { PaymentSchema, paymentSchema } from '@/lib/validations/paymentValidatio
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createPayment } from '@/lib/actions/paymentActions';
 import { usePathname } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 type Props = {
     person: PiggyBankPerson;
@@ -31,9 +32,8 @@ function PaymentForm({ person }: Props) {
         })
 
         if (!result.success) {
-            console.log(result.message)
+            toast.error(result.message)
         } else {
-            console.log(result.message)
             reset();
         }
     }

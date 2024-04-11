@@ -5,6 +5,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Topbar from "@/components/shared/Topbar";
 import LeftSidebar from "@/components/shared/LeftSidebar";
 import BottomBar from "@/components/shared/BottomBar";
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +25,7 @@ export default function RootLayout({
 			<html lang='pl'>
 				<body className={inter.className}>
 					<Topbar />
+					<ToastContainer position="top-center" autoClose={4000} />
 					<main className='flex'>
 						<LeftSidebar />
 						<section className='main-container w-full max-w-6xl'>

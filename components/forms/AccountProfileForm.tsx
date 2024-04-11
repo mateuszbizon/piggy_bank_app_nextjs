@@ -7,6 +7,7 @@ import { UserSchemaType, userSchema } from '@/lib/validations/userValidation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { usePathname, useRouter } from 'next/navigation'
 import { updateUser } from '@/lib/actions/userActions'
+import { toast } from 'react-toastify'
 
 type Props = {
   user: {
@@ -39,7 +40,7 @@ function AccountProfileForm({ user, btnText }: Props) {
         router.push("/")
       }
     } else {
-      console.log(result.message)
+      toast.error(result.message)
     }
   }
   

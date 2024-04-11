@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "../globals.css";
 import Topbar from "@/components/shared/Topbar";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <html lang="pl">
         <body className={inter.className}>
           <Topbar />
+          <ToastContainer position="top-center" autoClose={4000} />
           <main className="main-container max-w-3xl">
             {children}
           </main>

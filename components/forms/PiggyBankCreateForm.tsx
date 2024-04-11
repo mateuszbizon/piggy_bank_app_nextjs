@@ -7,6 +7,7 @@ import { PiggyBankSchema, piggyBankSchema } from '@/lib/validations/piggyBankVal
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createPiggyBank } from '@/lib/actions/piggyBankActions';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 type Props = {
     userId: string;
@@ -30,7 +31,7 @@ function PiggyBankCreateForm({ userId }: Props) {
     if (result.success) {
         router.push("/")
     } else {
-        console.log(result.message)
+        toast.error(result.message)
     }
   }
     
