@@ -36,6 +36,36 @@ export async function createPiggyBank({ userId, name }: CreatePiggyBankProps) {
     }
 }
 
+type EditPiggyBankProps = {
+    piggyBankId?: string;
+    userId?: string;
+    name: string;
+    path: string;
+}
+
+export async function editPiggyBank({ piggyBankId, userId, name, path }: EditPiggyBankProps) {
+    try {
+        connectToDb();
+
+        const existingPiggyBank = await PiggyBank.findOne({ authorId: userId, name: name.toLowerCase() })
+
+        if (existingPiggyBank && existingPiggyBank._id.toString() !== piggyBankId) {
+            return { message: "Skarbonka już istnieje", success: false }
+        }
+
+        await PiggyBank.findByIdAndUpdate(piggyBankId, {
+            name: name.toLowerCase(),
+        }, { new: true })
+
+        revalidatePath(path);
+
+        return { message: "Zedytowano skarbonkę", success: true }
+    } catch (error) {
+        console.error(error);
+        return { message: "Nie można zedytować skarbonki", success: false }
+    }
+}
+
 export async function getPiggyBankById(piggyBankId: string) {
     try {
         connectToDb();
