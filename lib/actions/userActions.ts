@@ -41,7 +41,7 @@ export async function updateUser({ userId, name, username, path }: UpdateUserPro
 
 		await User.findOneAndUpdate(
 			{ id: userId },
-			{ username: username.toLowerCase(), name, onboarded: true },
+			{ username: username, name, onboarded: true },
 			{ upsert: true }
 		);
 
