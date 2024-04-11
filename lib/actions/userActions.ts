@@ -33,7 +33,7 @@ export async function updateUser({ userId, name, username, path }: UpdateUserPro
 	try {
 		connectToDb();
 
-		const existingUser = await User.findOne({ username: username });
+		const existingUser = await User.findOne({ username: username.toLowerCase() });
 
 		if (existingUser && existingUser.id !== userId) {
 			return { message: "Nazwa użytkownika jest zajęta", success: false };
@@ -41,7 +41,7 @@ export async function updateUser({ userId, name, username, path }: UpdateUserPro
 
 		await User.findOneAndUpdate(
 			{ id: userId },
-			{ username: username, name, onboarded: true },
+			{ username: username.toLowerCase(), name, onboarded: true },
 			{ upsert: true }
 		);
 
