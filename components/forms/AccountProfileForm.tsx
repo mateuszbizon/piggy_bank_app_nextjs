@@ -31,7 +31,7 @@ function AccountProfileForm({ user, btnText }: Props) {
   })
 
   async function onSubmit(values: UserSchemaType) {
-    const result: ApiResponse = await updateUser({ userId: user.id, name: values.name, username: values.username })
+    const result: ApiResponse = await updateUser({ userId: user.id, name: values.name, username: values.username, path: pathName })
 
     if (result.success) {
       if (pathName === "/profile/edit") {

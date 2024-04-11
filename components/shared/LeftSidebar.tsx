@@ -11,7 +11,7 @@ export const sidebarItems = [
 	{ route: "/", icon: <HomeIcon className='h-6 w-6' />, text: "Główny" },
 	{ route: "/create", icon: <PlusIcon className='h-6 w-6' />, text: "Utwórz" },
 	{
-		route: "/profile",
+		route: "/profile/edit",
 		icon: <UserIcon className='h-6 w-6' />,
 		text: "Profil",
 	},

@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import PiggyBank from "../models/piggyBankModel";
 import User from "../models/userModel";
 import { connectToDb } from "../mongoose";
@@ -25,18 +26,17 @@ type UpdateUserProps = {
 	userId: string;
 	name: string;
 	username: string;
+	path: string;
 };
 
-export async function updateUser({ userId, name, username }: UpdateUserProps) {
+export async function updateUser({ userId, name, username, path }: UpdateUserProps) {
 	try {
 		connectToDb();
 
 		const existingUser = await User.findOne({ username: username });
 
-		if (existingUser) {
-			if (existingUser.id !== userId && existingUser.username === username) {
-				return { message: "Nazwa użytkownika jest zajęta", success: false };
-			}
+		if (existingUser && existingUser.id !== userId) {
+			return { message: "Nazwa użytkownika jest zajęta", success: false };
 		}
 
 		await User.findOneAndUpdate(
@@ -44,6 +44,10 @@ export async function updateUser({ userId, name, username }: UpdateUserProps) {
 			{ username: username.toLowerCase(), name, onboarded: true },
 			{ upsert: true }
 		);
+
+		if (path === "/profile/edit") {
+			revalidatePath(path)
+		}
 
         return { message: "Dodano/zaktualizowano użytkownika", success: true }
 
