@@ -2,6 +2,7 @@
 
 import React from 'react'
 import PaymentForm from '../forms/PaymentForm';
+import { TrashIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
 
 type Props = {
     person: PiggyBankPerson;
@@ -13,6 +14,14 @@ function PiggyBankPersonCard({ person }: Props) {
         <span className='text-2xl font-semibold'>{person.name}</span>
         <span className='text-2xl'>{person.amountMoney.toFixed(2)} zł</span>
         <PaymentForm person={person} />
+        <div className='flex gap-2 w-full'>
+          <button className='delete-btn-circle-transparent'>
+            <TrashIcon className='h-7 w-7' />
+          </button>
+          <button className='main-btn-circle-transparent'>
+            <PencilSquareIcon className='h-7 w-7' />
+          </button>
+        </div>
     </div>
   )
 }
