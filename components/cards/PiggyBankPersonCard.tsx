@@ -16,8 +16,11 @@ type Props = {
 function PiggyBankPersonCard({ person }: Props) {
   const pathName = usePathname();
   const [deleteModalActive, setDeleteModalActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
 
   async function handleDeletePerson() {
+    setIsLoading(true)
+
     const result: ApiResponse = await deletePerson({
       piggyBankId: person.piggyBankId,
       piggyBankPersonId: person._id,
@@ -30,6 +33,7 @@ function PiggyBankPersonCard({ person }: Props) {
     }
 
     setDeleteModalActive(false);
+    setIsLoading(false);
   }
 
   return (
@@ -48,7 +52,7 @@ function PiggyBankPersonCard({ person }: Props) {
         {deleteModalActive && (
           <>
             <Shadow closeShadow={() => setDeleteModalActive(false)} />
-            <DeleteModal message='Czy na pewno chcesz usunąć tą osobę?' closeModal={() => setDeleteModalActive(false)} deleteFunction={handleDeletePerson} />
+            <DeleteModal message='Czy na pewno chcesz usunąć tą osobę?' closeModal={() => setDeleteModalActive(false)} deleteFunction={handleDeletePerson} isLoading={isLoading} />
           </>
         ) }
     </div>

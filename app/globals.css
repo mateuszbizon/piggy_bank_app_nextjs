@@ -20,7 +20,7 @@
 	}
 
 	.delete-btn {
-		@apply bg-error py-2 px-4 rounded text-light-1 hover:bg-error-2 transition
+		@apply bg-error py-2 px-4 rounded text-light-1 hover:bg-error-2 transition disabled:bg-error-2 disabled:cursor-not-allowed;
 	}
 
 	.delete-btn-circle-transparent {
