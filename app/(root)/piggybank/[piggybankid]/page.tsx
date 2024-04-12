@@ -1,3 +1,4 @@
+import ErrorMessage from '@/components/messages/ErrorMessage';
 import PiggyBankMain from '@/components/piggyBankDetails/PiggyBankMain';
 import { getPiggyBankById } from '@/lib/actions/piggyBankActions';
 import { getUserById } from '@/lib/actions/userActions';
@@ -19,10 +20,9 @@ async function PiggyBankPage({ params }: { params: { piggybankid: string } }) {
 
     const result: ApiResponse<PiggyBankResponse> = await getPiggyBankById(params.piggybankid);
 
-    if (!result.success) return null;
+    if (!result.success) return <ErrorMessage message={result.message} />;
 
     const piggyBankData = result.data;
-    console.log(piggyBankData)
 
   return (
     <>

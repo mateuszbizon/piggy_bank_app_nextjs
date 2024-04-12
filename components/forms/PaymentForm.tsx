@@ -18,7 +18,7 @@ function PaymentForm({ person }: Props) {
     const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<PaymentSchema>({
         resolver: zodResolver(paymentSchema),
         defaultValues: {
-            payment: 0,
+            payment: 0.01,
         }
     })
 
