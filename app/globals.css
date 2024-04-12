@@ -19,6 +19,10 @@
 		@apply bg-transparent py-2 px-4 rounded text-black hover:bg-secondary-1 transition;
 	}
 
+	.delete-btn {
+		@apply bg-error py-2 px-4 rounded text-light-1 hover:bg-error-2 transition
+	}
+
 	.delete-btn-circle-transparent {
 		@apply bg-transparent py-2 px-2 rounded-full text-light-1 hover:bg-error transition;
 	}
