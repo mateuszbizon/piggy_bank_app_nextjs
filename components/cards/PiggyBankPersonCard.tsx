@@ -5,13 +5,32 @@ import PaymentForm from '../forms/PaymentForm';
 import { TrashIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
 import DeleteModal from '../modals/DeleteModal';
 import Shadow from '../ui/Shadow';
+import { deletePerson } from '@/lib/actions/piggyBankPersonActions';
+import { usePathname } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 type Props = {
     person: PiggyBankPerson;
 }
 
 function PiggyBankPersonCard({ person }: Props) {
+  const pathName = usePathname();
   const [deleteModalActive, setDeleteModalActive] = useState(false);
+
+  async function handleDeletePerson() {
+    const result: ApiResponse = await deletePerson({
+      piggyBankId: person.piggyBankId,
+      piggyBankPersonId: person._id,
+      amountMoney: person.amountMoney,
+      path: pathName,
+    })
+
+    if (!result.success) {
+      toast.error(result.message)
+    }
+
+    setDeleteModalActive(false);
+  }
 
   return (
     <div key={person._id} className='flex flex-col items-center gap-5 rounded py-3 px-3 bg-secondary-1 h-fit'>
@@ -29,7 +48,7 @@ function PiggyBankPersonCard({ person }: Props) {
         {deleteModalActive && (
           <>
             <Shadow closeShadow={() => setDeleteModalActive(false)} />
-            <DeleteModal message='Czy na pewno chcesz usunąć tą osobę?' closeModal={() => setDeleteModalActive(false)} />
+            <DeleteModal message='Czy na pewno chcesz usunąć tą osobę?' closeModal={() => setDeleteModalActive(false)} deleteFunction={handleDeletePerson} />
           </>
         ) }
     </div>
