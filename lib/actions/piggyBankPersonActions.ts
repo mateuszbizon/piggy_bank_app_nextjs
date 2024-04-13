@@ -58,7 +58,7 @@ export async function editPerson({ piggyBankId, piggyBankPersonId, name, path }:
         
         revalidatePath(path);
 
-        return { message: "Zedytowano osobę", success: true }
+        return { message: "Zaktulizowano osobę", success: true }
     } catch (error) {
         console.error(error);
         return { message: "Nie można edytować osoby", success: false }
