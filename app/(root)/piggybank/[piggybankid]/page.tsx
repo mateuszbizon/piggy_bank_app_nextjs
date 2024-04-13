@@ -16,8 +16,6 @@ async function PiggyBankPage({ params }: { params: { piggybankid: string } }) {
 
     if (!fetchedUser.data?.onboarded) redirect("/onboarding");
 
-    const fetchedUserId = fetchedUser.data?._id;
-
     const result: ApiResponse<PiggyBankResponse> = await getPiggyBankById(params.piggybankid);
 
     if (!result.success) return <ErrorMessage message={result.message} />;
@@ -29,7 +27,7 @@ async function PiggyBankPage({ params }: { params: { piggybankid: string } }) {
       <h1 className='title mb-6'>{piggyBankData?.piggyBank.name}</h1>
       <p className='font-semibold text-2xl mb-3'>Suma pieniędzy:</p>
       <p className='font-semibold text-3xl'>{piggyBankData?.piggyBank.amountMoney.toFixed(2)} zł</p>
-      <PiggyBankMain piggyBankData={piggyBankData} currentUserId={fetchedUserId} />
+      <PiggyBankMain piggyBankData={piggyBankData} />
     </>
   )
 }

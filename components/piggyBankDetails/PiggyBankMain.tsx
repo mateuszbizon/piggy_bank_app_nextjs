@@ -9,10 +9,9 @@ import PiggyBankEdit from './PiggyBankEdit';
 
 type Props = {
     piggyBankData?: PiggyBankResponse;
-    currentUserId: string;
 }
 
-function PiggyBankMain({ piggyBankData, currentUserId }: Props) {
+function PiggyBankMain({ piggyBankData }: Props) {
     const [view, setView] = useState(PIGGY_BANK_PEOPLE);
     const [btnIndex, setBtnIndex] = useState(0)
 
@@ -31,7 +30,7 @@ function PiggyBankMain({ piggyBankData, currentUserId }: Props) {
             })}
         </div>
         {view === PIGGY_BANK_PEOPLE && <PiggyBankPeople people={piggyBankData?.people} />}
-        {view === PIGGY_BANK_ADD_PERSON && <PiggyBankAddPerson userId={currentUserId} piggyBank={piggyBankData?.piggyBank} />}
+        {view === PIGGY_BANK_ADD_PERSON && <PiggyBankAddPerson piggyBank={piggyBankData?.piggyBank} />}
         {view === PIGGY_BANK_PAYMENTS && <PiggyBankPayments payments={piggyBankData?.payments} />}
         {view === PIGGY_BANK_EDIT && <PiggyBankEdit piggyBank={piggyBankData?.piggyBank} />}
     </div>
