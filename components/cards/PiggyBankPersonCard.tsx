@@ -8,6 +8,7 @@ import Shadow from '../ui/Shadow';
 import { deletePerson } from '@/lib/actions/piggyBankPersonActions';
 import { usePathname } from 'next/navigation';
 import { toast } from 'react-toastify';
+import PiggyBankPersonEditForm from '../forms/PiggyBankPersonEditForm';
 
 type Props = {
     person: PiggyBankPerson;
@@ -16,6 +17,7 @@ type Props = {
 function PiggyBankPersonCard({ person }: Props) {
   const pathName = usePathname();
   const [deleteModalActive, setDeleteModalActive] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
 
   async function handleDeletePerson() {
@@ -40,15 +42,21 @@ function PiggyBankPersonCard({ person }: Props) {
     <div key={person._id} className='flex flex-col items-center gap-5 rounded py-3 px-3 bg-secondary-1 h-fit'>
         <span className='text-2xl font-semibold'>{person.name}</span>
         <span className='text-2xl'>{person.amountMoney.toFixed(2)} zł</span>
-        <PaymentForm person={person} />
+        {isEditing ? (
+          <PiggyBankPersonEditForm person={person} />
+        ) : (
+          <PaymentForm person={person} />
+        )}
+
         <div className='flex gap-2 w-full'>
           <button className='delete-btn-circle-transparent' onClick={() => setDeleteModalActive(true)}>
             <TrashIcon className='h-7 w-7' />
           </button>
-          <button className='main-btn-circle-transparent'>
+          <button className='main-btn-circle-transparent' onClick={() => setIsEditing(prev => !prev)}>
             <PencilSquareIcon className='h-7 w-7' />
           </button>
         </div>
+
         {deleteModalActive && (
           <>
             <Shadow closeShadow={() => setDeleteModalActive(false)} />

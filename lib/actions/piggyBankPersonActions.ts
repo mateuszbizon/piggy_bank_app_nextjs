@@ -35,6 +35,36 @@ export async function createPerson({ piggyBankId, personName, path }: CreatePers
     }
 }
 
+type EditPersonProps = {
+    piggyBankId: string;
+    piggyBankPersonId: string;
+    name: string;
+    path: string;
+}
+
+export async function editPerson({ piggyBankId, piggyBankPersonId, name, path }: EditPersonProps) {
+    try {
+        connectToDb();
+
+        const existingPerson = await PiggyBankPerson.findOne({ piggyBankId: piggyBankId, name: name.toLowerCase() })
+
+        if (existingPerson && existingPerson._id.toString() !== piggyBankPersonId) {
+            return { message: "Nazwa jest już zajęta", success: false }
+        }
+
+        await PiggyBankPerson.findByIdAndUpdate(piggyBankPersonId, {
+            name: name
+        }, { new: true })
+        
+        revalidatePath(path);
+
+        return { message: "Zedytowano osobę", success: true }
+    } catch (error) {
+        console.error(error);
+        return { message: "Nie można edytować osoby", success: false }
+    }
+}
+
 type DeletePersonProps = {
     piggyBankId: string;
     piggyBankPersonId: string;
