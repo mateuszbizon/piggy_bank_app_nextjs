@@ -6,7 +6,7 @@ const piggyBankSchema = new mongoose.Schema({
     required: true,
   },
   authorId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     required: true,
   },
   createdAt: {

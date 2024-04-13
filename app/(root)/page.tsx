@@ -14,7 +14,7 @@ export default async function Home() {
   
   if (!fetchedUser.data?.onboarded) redirect("/onboarding")
 
-  const result: ApiResponse<PiggyBanksResponse> = await getUserPiggyBanks(fetchedUser.data._id)
+  const result: ApiResponse<PiggyBanksResponse> = await getUserPiggyBanks(fetchedUser.data.id)
   
   return (
     <>

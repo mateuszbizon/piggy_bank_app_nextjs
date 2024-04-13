@@ -16,7 +16,7 @@ async function Page() {
 		<div className='inner-container'>
 			<h1 className='title mb-5'>Utwórz skarbonkę</h1>
 			<section className='form-section'>
-				<PiggyBankCreateForm userId={fetchedUser.data._id} />
+				<PiggyBankCreateForm userId={fetchedUser.data.id} />
 			</section>
 		</div>
 	);
