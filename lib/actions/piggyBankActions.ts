@@ -87,3 +87,18 @@ export async function getPiggyBankById(piggyBankId: string) {
         return { message: "Nie można pobrać skarbonki", success: false }
     }
 }
+
+export async function deletePiggyBank(piggyBankId?: string) {
+    try {
+        connectToDb();
+
+        await PiggyBank.findByIdAndDelete(piggyBankId);
+
+        revalidatePath("/")
+
+        return { message: "Usunięto skarbonkę", success: true }
+    } catch (error) {
+        console.error(error);
+        return { message: "Nie można usunąć skarbonki", success: false }
+    }
+}

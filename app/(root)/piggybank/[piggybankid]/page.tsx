@@ -1,4 +1,5 @@
 import ErrorMessage from '@/components/messages/ErrorMessage';
+import PiggyBankDelete from '@/components/piggyBankDetails/PiggyBankDelete';
 import PiggyBankMain from '@/components/piggyBankDetails/PiggyBankMain';
 import { getPiggyBankById } from '@/lib/actions/piggyBankActions';
 import { getUserById } from '@/lib/actions/userActions';
@@ -26,7 +27,8 @@ async function PiggyBankPage({ params }: { params: { piggybankid: string } }) {
     <>
       <h1 className='title mb-6'>{piggyBankData?.piggyBank.name}</h1>
       <p className='font-semibold text-2xl mb-3'>Suma pieniędzy:</p>
-      <p className='font-semibold text-3xl'>{piggyBankData?.piggyBank.amountMoney.toFixed(2)} zł</p>
+      <p className='font-semibold text-3xl mb-3'>{piggyBankData?.piggyBank.amountMoney.toFixed(2)} zł</p>
+      <PiggyBankDelete piggyBank={piggyBankData?.piggyBank} />
       <PiggyBankMain piggyBankData={piggyBankData} />
     </>
   )
