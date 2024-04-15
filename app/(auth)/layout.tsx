@@ -23,7 +23,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <Topbar />
           <ToastContainer position="top-center" autoClose={4000} />
-          <main className="main-container max-w-3xl">
+          <main className="main-container max-w-3xl items-center">
             {children}
           </main>
           </body>
