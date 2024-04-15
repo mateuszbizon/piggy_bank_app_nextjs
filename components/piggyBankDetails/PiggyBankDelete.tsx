@@ -6,6 +6,7 @@ import DeleteModal from '../modals/DeleteModal';
 import { deletePiggyBank } from '@/lib/actions/piggyBankActions';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@/context/UserContext';
 
 type Props = {
     piggyBank?: PiggyBank;
@@ -15,6 +16,7 @@ function PiggyBankDelete({ piggyBank }: Props) {
     const [deleteModalActive, setDeleteModalActive] = useState(false)
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const { isAuthor } = useUser();
 
     async function handleDeletePiggyBank() {
         setIsLoading(true);
@@ -32,17 +34,21 @@ function PiggyBankDelete({ piggyBank }: Props) {
     }
 
   return (
-    <div>
-        <button className='delete-btn' onClick={() => setDeleteModalActive(true)}>
-            Usuń skarbonkę
-        </button>
-        {deleteModalActive && (
-            <>
-                <Shadow closeShadow={() => setDeleteModalActive(false)} />
-                <DeleteModal message='Czy na pewno chcesz usunąć tę skarbonkę?' closeModal={() => setDeleteModalActive(false)} isLoading={isLoading} deleteFunction={handleDeletePiggyBank} />
-            </>
+    <>
+        {isAuthor && (
+            <div>
+                <button className='delete-btn' onClick={() => setDeleteModalActive(true)}>
+                    Usuń skarbonkę
+                </button>
+                {deleteModalActive && (
+                    <>
+                        <Shadow closeShadow={() => setDeleteModalActive(false)} />
+                        <DeleteModal message='Czy na pewno chcesz usunąć tę skarbonkę?' closeModal={() => setDeleteModalActive(false)} isLoading={isLoading} deleteFunction={handleDeletePiggyBank} />
+                    </>
+                )}
+            </div>
         )}
-    </div>
+    </>
   )
 }
 
