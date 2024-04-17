@@ -74,4 +74,8 @@
 	.no-result {
 		@apply text-xl text-center font-medium mb-6;
 	}
+
+	.gradient-text {
+		@apply bg-gradient-to-r from-primary via-third-1 to-secondary-1 bg-clip-text text-transparent;
+	}
 }
