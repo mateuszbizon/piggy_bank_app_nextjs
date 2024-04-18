@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { plPL } from "@clerk/localizations";
 import "../globals.css";
 import Topbar from "@/components/shared/Topbar";
 import { ToastContainer } from "react-toastify";
@@ -18,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={plPL}>
       <html lang="pl">
         <body className={inter.className}>
           <Topbar />
